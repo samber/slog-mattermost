@@ -6,7 +6,7 @@ import (
 
 	slogmattermost "github.com/samber/slog-mattermost"
 
-	"golang.org/x/exp/slog"
+	"log/slog"
 )
 
 func main() {

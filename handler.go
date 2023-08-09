@@ -3,8 +3,9 @@ package slogmattermost
 import (
 	"context"
 
+	"log/slog"
+
 	"github.com/nafisfaysal/matterhook"
-	"golang.org/x/exp/slog"
 )
 
 type Option struct {
