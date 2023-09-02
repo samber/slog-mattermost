@@ -41,6 +41,8 @@ func (o Option) NewMattermostHandler() slog.Handler {
 	}
 }
 
+var _ slog.Handler = (*MattermostHandler)(nil)
+
 type MattermostHandler struct {
 	option Option
 	attrs  []slog.Attr
