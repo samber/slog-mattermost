@@ -97,27 +97,27 @@ func main() {
 	channel := "alerts"
 
 	logger := slog.New(slogmattermost.Option{Level: slog.LevelDebug, WebhookURL: url, Channel: channel}.NewMattermostHandler())
-  logger = logger.
-    With("environment", "dev").
-    With("release", "v1.0.0")
+	logger = logger.
+		With("environment", "dev").
+		With("release", "v1.0.0")
 
-  // log error
-  logger.
-    With("category", "sql").
-    With("query.statement", "SELECT COUNT(*) FROM users;").
-    With("query.duration", 1*time.Second).
-    With("error", fmt.Errorf("could not count users")).
-    Error("caramba!")
+	// log error
+	logger.
+		With("category", "sql").
+		With("query.statement", "SELECT COUNT(*) FROM users;").
+		With("query.duration", 1*time.Second).
+		With("error", fmt.Errorf("could not count users")).
+		Error("caramba!")
 
-  // log user signup
-  logger.
-    With(
-        slog.Group("user",
-            slog.String("id", "user-123"),
-            slog.Time("created_at", time.Now()),
-        ),
-    ).
-    Info("user registration")
+	// log user signup
+	logger.
+		With(
+			slog.Group("user",
+				slog.String("id", "user-123"),
+				slog.Time("created_at", time.Now()),
+			),
+		).
+		Info("user registration")
 }
 
 ```
