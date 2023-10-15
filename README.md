@@ -71,7 +71,17 @@ type Option struct {
 
 	// optional: customize Mattermost event builder
 	Converter Converter
+
+	// optional: see slog.HandlerOptions
+	AddSource   bool
+	ReplaceAttr func(groups []string, a slog.Attr) slog.Attr
 }
+```
+
+Other global parameters:
+
+```go
+slogmattermost.SourceKey = "source"
 ```
 
 ### Example

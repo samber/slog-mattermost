@@ -6,6 +6,7 @@ import (
 	"log/slog"
 
 	"github.com/nafisfaysal/matterhook"
+	slogcommon "github.com/samber/slog-common"
 )
 
 type Option struct {
@@ -23,6 +24,10 @@ type Option struct {
 
 	// optional: customize Mattermost event builder
 	Converter Converter
+
+	// optional: see slog.HandlerOptions
+	AddSource   bool
+	ReplaceAttr func(groups []string, a slog.Attr) slog.Attr
 }
 
 func (o Option) NewMattermostHandler() slog.Handler {
@@ -59,7 +64,7 @@ func (h *MattermostHandler) Handle(ctx context.Context, record slog.Record) erro
 		converter = h.option.Converter
 	}
 
-	message := converter(h.attrs, &record)
+	message := converter(h.option.AddSource, h.option.ReplaceAttr, h.attrs, h.groups, &record)
 
 	if h.option.Channel != "" {
 		message.Channel = h.option.Channel
@@ -79,7 +84,7 @@ func (h *MattermostHandler) Handle(ctx context.Context, record slog.Record) erro
 func (h *MattermostHandler) WithAttrs(attrs []slog.Attr) slog.Handler {
 	return &MattermostHandler{
 		option: h.option,
-		attrs:  appendAttrsToGroup(h.groups, h.attrs, attrs),
+		attrs:  slogcommon.AppendAttrsToGroup(h.groups, h.attrs, attrs...),
 		groups: h.groups,
 	}
 }
