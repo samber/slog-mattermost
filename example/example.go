@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	slogmattermost "github.com/samber/slog-mattermost"
+	slogmattermost "github.com/samber/slog-mattermost/v2"
 
 	"log/slog"
 )

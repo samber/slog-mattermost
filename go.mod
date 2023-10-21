@@ -1,4 +1,4 @@
-module github.com/samber/slog-mattermost
+module github.com/samber/slog-mattermost/v2
 
 go 1.21
 

@@ -43,16 +43,16 @@ A [mattermost](https://mattermost.com) Handler for [slog](https://pkg.go.dev/log
 ## 🚀 Install
 
 ```sh
-go get github.com/samber/slog-mattermost
+go get github.com/samber/slog-mattermost/v2
 ```
 
 **Compatibility**: go >= 1.21
 
-No breaking changes will be made to exported APIs before v2.0.0.
+No breaking changes will be made to exported APIs before v3.0.0.
 
 ## 💡 Usage
 
-GoDoc: [https://pkg.go.dev/github.com/samber/slog-mattermost](https://pkg.go.dev/github.com/samber/slog-mattermost)
+GoDoc: [https://pkg.go.dev/github.com/samber/slog-mattermost/v2](https://pkg.go.dev/github.com/samber/slog-mattermost/v2)
 
 ### Handler options
 
@@ -89,7 +89,7 @@ slogmattermost.SourceKey = "source"
 
 ```go
 import (
-	slogmattermost "github.com/samber/slog-mattermost"
+	slogmattermost "github.com/samber/slog-mattermost/v2"
 	"log/slog"
 )
 
