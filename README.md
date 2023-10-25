@@ -83,6 +83,7 @@ Other global parameters:
 
 ```go
 slogmattermost.SourceKey = "source"
+slogmattermost.ColorMapping = map[slog.Level]string{...}
 ```
 
 ### Example

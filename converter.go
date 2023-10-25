@@ -26,7 +26,7 @@ func DefaultConverter(addSource bool, replaceAttr func(groups []string, a slog.A
 	message.Text = record.Message
 	message.Attachments = []matterhook.Attachment{
 		{
-			Color:  colorMap[record.Level],
+			Color:  ColorMapping[record.Level],
 			Fields: []matterhook.Field{},
 		},
 	}
