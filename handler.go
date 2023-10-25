@@ -78,7 +78,11 @@ func (h *MattermostHandler) Handle(ctx context.Context, record slog.Record) erro
 		message.IconEmoji = h.option.IconEmoji
 	}
 
-	return matterhook.Send(h.option.WebhookURL, *message)
+	go func() {
+		_ = matterhook.Send(h.option.WebhookURL, *message)
+	}()
+
+	return nil
 }
 
 func (h *MattermostHandler) WithAttrs(attrs []slog.Attr) slog.Handler {
