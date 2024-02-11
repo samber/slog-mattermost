@@ -39,6 +39,10 @@ func (o Option) NewMattermostHandler() slog.Handler {
 		panic("missing Mattermost webhook url")
 	}
 
+	if o.Converter == nil {
+		o.Converter = DefaultConverter
+	}
+
 	return &MattermostHandler{
 		option: o,
 		attrs:  []slog.Attr{},
@@ -59,12 +63,7 @@ func (h *MattermostHandler) Enabled(_ context.Context, level slog.Level) bool {
 }
 
 func (h *MattermostHandler) Handle(ctx context.Context, record slog.Record) error {
-	converter := DefaultConverter
-	if h.option.Converter != nil {
-		converter = h.option.Converter
-	}
-
-	message := converter(h.option.AddSource, h.option.ReplaceAttr, h.attrs, h.groups, &record)
+	message := h.option.Converter(h.option.AddSource, h.option.ReplaceAttr, h.attrs, h.groups, &record)
 
 	if h.option.Channel != "" {
 		message.Channel = h.option.Channel
