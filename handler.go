@@ -77,6 +77,7 @@ func (h *MattermostHandler) Handle(ctx context.Context, record slog.Record) erro
 		message.IconEmoji = h.option.IconEmoji
 	}
 
+	// non-blocking
 	go func() {
 		_ = matterhook.Send(h.option.WebhookURL, *message)
 	}()
