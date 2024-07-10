@@ -94,6 +94,11 @@ func (h *MattermostHandler) WithAttrs(attrs []slog.Attr) slog.Handler {
 }
 
 func (h *MattermostHandler) WithGroup(name string) slog.Handler {
+	// https://cs.opensource.google/go/x/exp/+/46b07846:slog/handler.go;l=247
+	if name == "" {
+		return h
+	}
+
 	return &MattermostHandler{
 		option: h.option,
 		attrs:  h.attrs,
