@@ -10,5 +10,5 @@ require (
 require (
 	github.com/nafisfaysal/matterhook v1.0.0
 	github.com/samber/slog-common v0.17.1
-	go.uber.org/goleak v1.2.1
+	go.uber.org/goleak v1.3.0
 )
